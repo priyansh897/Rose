@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day My beautiful😍😘 🌹</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background: linear-gradient(270deg,#ff9a9e,#fad0c4,#ffdde1,#ffc3a0);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.center{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.25);
+    max-width:380px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+h1{ color:#ff4d6d; margin-bottom:10px; }
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+    transition:0.3s;
+}
+button:hover{transform:scale(1.1);}
+
+/* hidden pages */
+#page2,#page3,#page4{
+    opacity:0;
+    pointer-events:none;
+    transform:scale(0.8);
+    transition:1s;
+}
+
+/* LETTER */
+.letter{
+    background:#fff0f3;
+    padding:20px;
+    border-radius:15px;
+    color:#444;
+}
+
+/* ROSE BLOOM */
+.rose{
+    font-size:150px;
+    transform:scale(0);
+}
+.bloom{
+    animation:bloomRose 2s forwards;
+}
+@keyframes bloomRose{
+    0%{transform:scale(0);}
+    60%{transform:scale(1.5);}
+    100%{transform:scale(1);}
+}
+
+/* KISS ANIMATION */
+.kiss{
+    font-size:90px;
+    opacity:0;
+}
+.kiss.show{
+    animation:kissPop 1.5s forwards;
+}
+@keyframes kissPop{
+    0%{transform:scale(0) translateY(50px);opacity:0;}
+    60%{transform:scale(1.4) translateY(-20px);opacity:1;}
+    100%{transform:scale(1) translateY(0);opacity:1;}
+}
+
+/* floating hearts */
+.heart{
+    position:absolute;
+    color:red;
+    animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="center">
+    <div class="card">
+        <h1>🌹 Happy Rose Day My Rosu💋😘🌹</h1>
+        <p style="color:#555;">Tap to begin</p>
+        <button onclick="openLetter()">Start 💌</button>
+    </div>
+</div>
+
+<!-- PAGE 2 LETTER -->
+<div id="page2" class="center">
+    <div class="card">
+        <h1>A Letter For You 💖</h1>
+        <div class="letter">
+            Happy Rose Day, My Rosu 🌹
+You are as sweet and special as a beautiful rose💋💘. Your smile brings happiness and warmth💗, and just thinking about you makes the day feel brighter.💗😘
+          May your life always be filled with love, joy, and lovely moments. 
+          Wishing you a cute and beautiful Rose Day, My Rosu💋💋 🌹
+        </div>
+        <button onclick="openRose()">Next 🌹</button>
+    </div>
+</div>
+
+<!-- PAGE 3 ROSE -->
+<div id="page3" class="center">
+    <div class="card">
+        <h1>This beautiful Rose is only for my tanu 🌹</h1>
+        <div id="rose" class="rose">🌹</div>
+        <button onclick="openKiss()">Next Surprise 💋</button>
+    </div>
+</div>
+
+<!-- PAGE 4 KISS -->
+<div id="page4" class="center">
+    <div class="card">
+        <h1>For my cutie💖</h1>
+        <div id="kiss" class="kiss">💋</div>
+        <p style="color:#ff4d6d;margin-top:10px;">Sending a sweet cute kiss 🌸</p>
+        <button onclick="restart()">Start Again 🔁</button>
+    </div>
+</div>
+
+<script>
+
+/* floating hearts start */
+for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*5)+"s";
+    document.body.appendChild(h);
+}
+
+/* PAGE FLOW */
+function openLetter(){
+    page1.style.opacity="0";
+    page1.style.pointerEvents="none";
+    setTimeout(()=>{
+        page2.style.opacity="1";
+        page2.style.pointerEvents="auto";
+        page2.style.transform="scale(1)";
+    },500);
+}
+
+function openRose(){
+    page2.style.opacity="0";
+    page2.style.pointerEvents="none";
+    setTimeout(()=>{
+        page3.style.opacity="1";
+        page3.style.pointerEvents="auto";
+        page3.style.transform="scale(1)";
+        document.getElementById("rose").classList.add("bloom");
+    },500);
+}
+
+function openKiss(){
+    page3.style.opacity="0";
+    page3.style.pointerEvents="none";
+    setTimeout(()=>{
+        page4.style.opacity="1";
+        page4.style.pointerEvents="auto";
+        page4.style.transform="scale(1)";
+        document.getElementById("kiss").classList.add("show");
+    },500);
+}
+
+/* restart */
+function restart(){
+    location.reload();
+}
+
+</script>
+
+</body>
+</html>
